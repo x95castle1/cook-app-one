@@ -1,0 +1,44 @@
+= Config Server sample
+
+:imagesdir: docs/images
+image:https://circleci.com/gh/spring-cloud-services-samples/cook.svg?style=svg["CircleCI", link="https://circleci.com/gh/spring-cloud-services-samples/cook"]
+
+*Cook* is an example application demonstrating the use of Config Server for Pivotal Cloud Foundry. (For information on the Config Server product, please https://docs.pivotal.io/spring-cloud-services/config-server/[see the documentation].)
+
+The main branch is using `spring-boot 3.0.0` and `spring-cloud 2022.0.0`. Check https://github.com/spring-cloud-services-samples/cook/tree/spring-boot-2.7[spring-boot-2.7], https://github.com/spring-cloud-services-samples/cook/tree/spring-boot-2.6[spring-boot-2.6], https://github.com/spring-cloud-services-samples/cook/tree/spring-boot-2.5[spring-boot-2.5] and https://github.com/spring-cloud-services-samples/cook/tree/spring-boot-2.4[spring-boot-2.4] branches for older versions.
+
+== Building and Deploying
+
+. If using Maven, run:
++
+....
+$ mvn package
+....
++
+If using Gradle, run `./gradlew build` (macOS, Linux) or `gradlew.bat build` (Windows).
++
+....
+$ ./gradlew build
+....
+
+. Run the deployment script (link:scripts/deploy.sh[`scripts/deploy.sh`] on Linux or maxOS, link:scripts/deploy.bat[`scripts/deploy.bat`] on Windows), giving it the path to the application archive. (This will be something like `target/cook-0.0.1-SNAPSHOT.jar` if you used Maven or `build/libs/cook-0.0.1-SNAPSHOT.jar` if you used Gradle.)
++
+....
+$ ./scripts/deploy.sh target/cook-0.0.1-SNAPSHOT.jar
+....
++
+The script will create a Config Server service instance, push the application, and bind the Config Server service instance to the application.
+
++
+[NOTE]
+====
+By default, the Config Server client dependency will cause all application endpoints to be secured by HTTP Basic authentication. For more information or if you wish to disable this, https://docs.pivotal.io/spring-cloud-services/config-server/writing-client-applications.html#disable-http-basic-auth[see the documentation]. (HTTP Basic authentication is disabled in this sample application.)
+====
+
+== Trying It Out
+
+. Visit `[ROUTE]/restaurant`, where `[ROUTE]` is the route bound to the application. The &#8220;special&#8221; of the day will be taken from the configuration repository and the value of `cook.special`.
++
+image::special-of-the-day.png[link:docs/images/special-of-the-day.png]
+
+For more information about the Config Server and its use in a client application, see the https://docs.pivotal.io/spring-cloud-services/config-server/writing-client-applications.html[Config Server documentation].

@@ -1,0 +1,36 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: cook-app-one
+  namespace: jeremy
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/part-of: cook-app-one
+    apps.tanzu.vmware.com/has-tests: "true"
+spec:
+  params:
+    - name: annotations
+      value:
+        autoscaling.knative.dev/minScale: "1"
+    - name: testing_pipeline_matching_labels
+      value:
+        apps.tanzu.vmware.com/pipeline: test
+        apps.tanzu.vmware.com/language: java-17
+  serviceClaims:
+    - name: spring-properties
+      ref:
+        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+        kind: ResourceClaim
+        name: cook-app-one-config-claim
+  build:
+    env:
+      - name: BP_JVM_VERSION
+        value: "17"
+  env:
+    - name: SPRING_CONFIG_IMPORT
+      value: "optional:configtree:${SERVICE_BINDING_ROOT}/spring-properties/"
+  source:
+    git:
+      url: ssh://git@github.com/x95castle1/cook-app-one
+      ref:
+        branch: main

@@ -1,0 +1,28 @@
+apiVersion: carto.run/v1alpha1
+kind: Deliverable
+metadata:
+  name: cook-app-one
+  namespace: jeremy
+  labels:
+    app.kubernetes.io/part-of: cook-app-one
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/component: deliverable
+    app.tanzu.vmware.com/deliverable-type: web
+    carto.run/cluster-template-name: external-deliverable-template
+    carto.run/resource-name: deliverable
+    carto.run/supply-chain-name: source-test-scan-to-url
+    carto.run/template-kind: ClusterTemplate
+    carto.run/template-lifecycle: mutable
+    carto.run/workload-name: cooking-demo
+    carto.run/workload-namespace: jeremy
+spec:
+  params:
+  - name: gitops_ssh_secret
+    value: git-auth
+  source:
+    git:
+      url: ssh://git@github.com/Mpluya/tap-workload-config-repo.git
+      ref:
+        branch: main
+    subPath: config/jeremy/cook-app-one

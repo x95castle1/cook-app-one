@@ -1,0 +1,10 @@
+apiVersion: config.apps.tanzu.vmware.com/v1alpha4
+kind: ConfigurationSource
+metadata:
+  name: cook-config-source
+  namespace: my-apps
+spec:
+  backends:
+    - type: git
+      uri: https://github.com/spring-cloud-services-samples/cook-config.git
+      defaultLabel: main
