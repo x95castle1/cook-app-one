@@ -30,6 +30,6 @@ spec:
       value: "stg"
   source:
     git:
-      url: ssh://git@github.com/x95castle1/cook
+      url: ssh://git@github.com/x95castle1/cook-app-one
       ref:
         branch: main
