@@ -1,12 +1,11 @@
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: cooking-demo
+  name: cook-app-one
   namespace: jeremy
   labels:
     apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: cooking-demo
-    apps.tanzu.vmware.com/has-tests: "true"
+    app.kubernetes.io/part-of: cook-app-one
 spec:
   params:
     - name: annotations
