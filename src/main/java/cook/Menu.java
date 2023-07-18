@@ -84,7 +84,7 @@ public class Menu {
 	}
 
 	public String writeOutput(){
-		String output = "Feed: " + getFeed() + "<br>" + "Prime: " + getPrime() + "<br>" + "Name: " + getName() + "<br>" + "Azure: " + getAzure() + "<br>" + "Logging: " + getLogging() + "<br>" + " Monitoring: " + getMonitoring() + "<br>" + "Rabbit: " + getRabbitMQ();
+		String output = "<b>Feed: <b>" + getFeed() + "<br>" + "<b>Prime: <b>" + getPrime() + "<br>" + "<b>Name: <b>" + getName() + "<br>" + "<b>Azure: <b>" + getAzure() + "<br>" + "<b>Logging:<b>" + getLogging() + "<br>" + "<b>Monitoring:<b> " + getMonitoring() + "<br>" + "<b>Rabbit: <b> " + getRabbitMQ();
 		return output; 
 	}		
 }
