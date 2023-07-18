@@ -7,4 +7,10 @@ spec:
   interval: 30s
   configurationSource: cook-app-one-config-source
   content:
+  - application/prime
+  - application/feed-processing
   - application
+  - application/azure
+  - application/logging
+  - application/monitoring
+  - application/rabbit-mq

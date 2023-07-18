@@ -9,4 +9,4 @@ spec:
       uri: https://github.com/x95castle1/cook-config
       searchPaths: 
       - configs/cook-app-one
-      - configs/shared
+      - configs/shared/stg

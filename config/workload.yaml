@@ -1,11 +1,12 @@
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: cook-app-one
+  name: cooking-demo
   namespace: jeremy
   labels:
     apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: cook-app-one
+    app.kubernetes.io/part-of: cooking-demo
+    apps.tanzu.vmware.com/has-tests: "true"
 spec:
   params:
     - name: annotations
@@ -24,8 +25,12 @@ spec:
   env:
     - name: SPRING_CONFIG_IMPORT
       value: "optional:configtree:${SERVICE_BINDING_ROOT}/spring-properties/"
+    - name: SPRING_CLOUD_CONFIG_ENABLED
+      value: "false"
+    - name: SPRING_PROFILES_ACTIVE
+      value: "stg"
   source:
     git:
-      url: ssh://git@github.com/x95castle1/cook-app-one
+      url: ssh://git@github.com/x95castle1/cook
       ref:
         branch: main
