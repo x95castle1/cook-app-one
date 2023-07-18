@@ -1,0 +1,12 @@
+apiVersion: config.apps.tanzu.vmware.com/v1alpha4
+kind: ConfigurationSource
+metadata:
+  name: cook-app-one-config-source
+  namespace: jeremy
+spec:
+  backends:
+    - type: git
+      uri: https://github.com/x95castle1/cook-config
+      searchPaths: 
+      - configs/cook-app-one
+      - configs/shared
